@@ -12,12 +12,39 @@
 这时候用容器跑一遍，里面是**干干净净的 Temurin JDK 8**，除了 JDK 什么都没有。
 能过，说明代码真的没问题。
 
-## 用法
+## 三种用法
+
+### 1. 一次性跑（最常用）
 
 ```bash
 ./docker/run.sh src/ch01_syntax/Hello.java
 ./docker/run.sh src/ch01_syntax/Hello.java 张三 18
 ```
+
+编译、运行、退出，容器自动删掉，不留痕迹。
+
+### 2. 常驻容器，进去随便敲
+
+想随手试试某段代码、要反复编译时用这个：
+
+```bash
+./docker/shell.sh                # 起容器并直接进去
+# 进去后在 /workspace 下随便 javac / java
+exit                             # 退出
+docker compose -f docker/compose.yml down    # 停掉
+```
+
+进去之后 `/workspace` 就是你的项目根目录，`src/` 里改的文件实时可见。
+
+### 3. 手动管理常驻容器
+
+```bash
+docker compose -f docker/compose.yml up -d
+docker compose -f docker/compose.yml exec java8 bash
+docker compose -f docker/compose.yml down
+```
+
+> 没配 `restart`，**不会开机自启**，用完记得 `down`。
 
 ## 关于镜像
 
@@ -35,8 +62,10 @@
 
 ## 换 JDK 版本对比
 
-改 `run.sh` 第 15 行：
+`run.sh` 改第 15 行：
 
 ```bash
 IMG="eclipse-temurin:8-jdk"    # 换成 17-jdk 或 21-jdk
 ```
+
+`compose.yml` 改 `image:` 那一行同理。

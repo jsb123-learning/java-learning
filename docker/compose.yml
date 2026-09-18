@@ -1,0 +1,26 @@
+# docker/compose.yml —— 常驻 JDK 8 容器，交互式练手用
+#
+# 跟 run.sh 的区别:
+#   run.sh       一次性跑完就退，适合「交作业前验证一遍」
+#   这个 compose  常驻容器，可以反复进去敲命令，适合「想随手试试某段代码」
+#
+# 用法:
+#   docker compose -f docker/compose.yml up -d          # 起
+#   docker compose -f docker/compose.yml exec java8 bash # 进容器
+#   docker compose -f docker/compose.yml down           # 停
+#
+# 进去之后 /workspace 就是你的项目根目录，直接 javac / java 随便试。
+# 注意: 不做开机自启 (restart 没配)，用完记得 down。
+
+services:
+  java8:
+    image: eclipse-temurin:8-jdk
+    container_name: java8-study
+    working_dir: /workspace
+    volumes:
+      # 相对 compose 文件所在目录，.. 就是项目根目录
+      - ..:/workspace
+    tty: true
+    stdin_open: true
+    command: tail -f /dev/null
+    mem_limit: 512m

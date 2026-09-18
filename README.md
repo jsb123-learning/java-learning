@@ -35,6 +35,9 @@ jswitch 17
 
 # 用容器里的纯净 JDK 8 验证（确保代码不依赖本机环境）
 ./docker/run.sh src/ch01_syntax/Hello.java
+
+# 起个常驻容器进去随便敲（退出后记得 down）
+./docker/shell.sh
 ```
 
 > `jswitch` 是 shell 函数，由 `~/.bashrc` 自动加载。新开的终端直接能用。
@@ -59,7 +62,9 @@ java-learning/
 │   ├── jswitch.sh         JDK 版本切换
 │   └── jclean.sh          清编译产物
 ├── docker/
-│   ├── run.sh             容器纯净 JDK 验证
+│   ├── run.sh             容器纯净 JDK 验证（一次性）
+│   ├── shell.sh           起常驻容器进去敲命令
+│   ├── compose.yml        常驻容器的编排文件
 │   └── README.md          为什么需要它
 ├── out/                   编译产物（已 gitignore）
 └── README.md              本文件
