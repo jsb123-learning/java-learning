@@ -1,0 +1,18 @@
+# 编译产物
+out/
+*.class
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+logs/

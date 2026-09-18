@@ -1,0 +1,10 @@
+services:
+  java8:
+    image: eclipse-temurin:8-jdk
+    container_name: java8-study
+    working_dir: /workspace
+    volumes:
+      - ./src:/workspace
+    tty: true
+    stdin_open: true
+    command: tail -f /dev/null
