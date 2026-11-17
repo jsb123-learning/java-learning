@@ -1,6 +1,4 @@
-import javax.sound.midi.Soundbank;
-
-public class Math_知识点 {
+public class 知识点_Math {
     public static void main(String[] args) {
         //abs取得绝对值
         int a =-1;
@@ -16,6 +14,16 @@ public class Math_知识点 {
         System.out.println(Math.round(10.50));
         //比较整数取最大值；
         System.out.println(Math.max(10,20));
+        //求a的b次冪
+        System.out.println(Math.pow(2,8));
+        //隐藏用法：
+        //利用pow开根号
+        System.out.println(Math.pow(16,0.25));
+        System.out.println(Math.pow(16,-0.5));
+        //开平方
+        System.out.println(Math.sqrt(16));
+        //开立方
+        System.out.println(Math.cbrt(27));
 
     }
 }
